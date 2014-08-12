@@ -31,7 +31,7 @@ var dbPath = 'test/testdb',
         published: 'today'
     },
     article2 = {
-        title: 'diskDB rocks',
+        title: 'diskDB rocks for sure',
         published: 'yesterday'
     },
     //nested objects
@@ -208,7 +208,7 @@ exports.findAll = {
         // find with a query
         test.equal(diskdb.articles.find({
             title: 'diskDB rocks'
-        }).length, 2, 'Should find two records with query');
+        }).length, 1, 'Should find one record with query');
         // no record should be returned when the query does not match any records
         test.equal(diskdb.articles.find({
             title: 'dummy text'
@@ -400,7 +400,8 @@ exports.remove = {
         test.equal(diskdb.articles.count(), 3, 'There should be 3 records in the collection');
         //deletion -- default true
         test.equal(diskdb.articles.remove({
-            'published': 'today'
+            'published': 'today',
+            'title': 'diskDB rocks'
         }), true, 'Deletion should be successful');
         //after deletion
         test.equal(diskdb.articles.count(), 1, 'There should be 1 record in the collection');
